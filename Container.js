@@ -1,107 +1,107 @@
-const T_CLASS = Symbol('class');
-const T_SINGLETON = Symbol('singleton');
-const T_LITERAL = Symbol('literal');
-const T_FACTORY = Symbol('factory');
+const T_CLASS = Symbol('class')
+const T_SINGLETON = Symbol('singleton')
+const T_LITERAL = Symbol('literal')
+const T_FACTORY = Symbol('factory')
 
 /**
- * depDescriptor - Descriptor for dependencies
+ * Descriptor for dependencies
+ *
+ * @memberof Container~
  *
  * @param  {String} name          dependency's name
- * @param  {*} definition         dependency's contructor or factory or literal
+ * @param  {*} Definition         dependency's contructor or factory or literal
  * @param  {String[]} deps        dependencies to resolve into constructor or factory call
  * @param  {Symbol} type          Symbol for the type
  * @return {Container~Descriptor} A descriptor representing a dependency
  */
-function depDescriptor (name, definition, deps, type) {
+function depDescriptor (name, Definition, deps, type) {
     return {
         name,
-        definition,
+        Definition,
         deps,
         type
-    };
-}
-
-function getSingletonInstance(descriptor, dependencies) {
-    if (!descriptor.instance) {
-        descriptor.instance = new descriptor.definition(...dependencies);
     }
-    return descriptor.instance;
 }
 
+function getSingletonInstance (descriptor, dependencies) {
+    if (!descriptor.instance) {
+        descriptor.instance = new descriptor.Definition(...dependencies)
+    }
+    return descriptor.instance
+}
+
+/**
+ * @constructs Container
+ */
 function containerFactory () {
-    const storage = new Map();
+    const storage = new Map()
 
     return {
         /**
-         * class - Register a class that could have more than one instance
-         *
+         * Register a class that could have more than one instance
+         * @memberof Container#
          * @param  {String}    name         Name for the dependency
          * @param  {Function}  definition   Class constructor
          * @param  {...String} deps         dependencies to resolve into constructor call
-         * @return {void}
          */
         class (name, definition, ...deps) {
-            storage.set(name, depDescriptor(name, definition, deps, T_CLASS));
+            storage.set(name, depDescriptor(name, definition, deps, T_CLASS))
         },
         /**
-         * singleton - Register a class that should have at most one instance
+         * Register a class that should have at most one instance
          *
+         * @memberof Container#
          * @param  {String}    name         Name for the dependency
          * @param  {Function}  definition   Class constructor
          * @param  {...String} deps         dependencies to resolve into constructor call
-         * @return {void}
          */
         singleton (name, definition, ...deps) {
-            storage.set(name, depDescriptor(name, definition, deps, T_SINGLETON));
+            storage.set(name, depDescriptor(name, definition, deps, T_SINGLETON))
         },
         /**
-         * factory - Register a factory
+         * Register a factory
          *
+         * @memberof Container#
          * @param  {String}    name         Name for the dependency
          * @param  {Function}  definition   Factory function
          * @param  {...String} deps         dependencies to resolve into factory call
-         * @return {void}
          */
         factory (name, definition, ...deps) {
-            storage.set(name, depDescriptor(name, definition, deps, T_FACTORY));
+            storage.set(name, depDescriptor(name, definition, deps, T_FACTORY))
         },
         /**
-         * literal - Register a literal value into container
+         * Register a literal value into container
          *
+         * @memberof Container#
          * @param  {String}    name        Name for the dependency
          * @param  {*}         definition  The item value
-         * @return {void}
          */
         literal (name, definition) {
-            storage.set(name, depDescriptor(name, definition, [], T_LITERAL));
+            storage.set(name, depDescriptor(name, definition, [], T_LITERAL))
         },
         get (name) {
-            const descriptor = storage.get(name);
+            const descriptor = storage.get(name)
             if (descriptor) {
                 if (descriptor.type !== T_LITERAL) {
-                    const resolvedDeps = descriptor.deps.map(this.get.bind(this));
+                    const resolvedDeps = descriptor.deps.map(this.get.bind(this))
                     switch (descriptor.type) {
-                        case T_FACTORY:
-                            return descriptor.definition(...resolvedDeps);
-                        case T_SINGLETON:
-                            return getSingletonInstance(descriptor, resolvedDeps);
-                        case T_CLASS:
-                            return new descriptor.definition(...resolvedDeps);
+                    case T_FACTORY:
+                        return descriptor.Definition(...resolvedDeps)
+                    case T_SINGLETON:
+                        return getSingletonInstance(descriptor, resolvedDeps)
+                    case T_CLASS:
+                        return new descriptor.Definition(...resolvedDeps)
                     }
                 } else {
-                    return descriptor.definition;
+                    return descriptor.Definition
                 }
             }
         },
         resolve (fn, ...dependencies) {
-            resolvedDeps = dependencies.map(this.get.bind(this));
-            fn(...resolvedDeps);
+            const resolvedDeps = dependencies.map(this.get.bind(this))
+            fn(...resolvedDeps)
         }
-    };
+    }
 }
 
-
-/**
- * @exports
- */
-module.exports = containerFactory;
+module.exports = containerFactory

@@ -8,5 +8,17 @@
   },
   "keywords": [],
   "author": "munizart",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "grunt": "^1.0.1",
+    "grunt-eslint": "^20.1.0",
+    "grunt-jsdoc-to-markdown": "^4.0.0",
+    "load-grunt-tasks": "^3.5.2",
+    "minami": "^1.2.3"
+  }
 }
