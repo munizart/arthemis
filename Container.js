@@ -79,6 +79,14 @@ function containerFactory () {
         literal (name, definition) {
             storage.set(name, depDescriptor(name, definition, [], T_LITERAL))
         },
+
+        /**
+         * Get a resolved dependency
+         *
+         * @memberof Container#
+         * @param  {String} name dependency name
+         * @return {Object}
+         */
         get (name) {
             const descriptor = storage.get(name)
             if (descriptor) {
@@ -97,6 +105,14 @@ function containerFactory () {
                 }
             }
         },
+
+        /**
+         * Call the given function within the requested dependencies resolved
+         *
+         * @memberof Container#
+         * @param  {Function}    fn           Function to call within deps
+         * @param  {...String[]} dependencies List of dependencies to resolve
+         */
         resolve (fn, ...dependencies) {
             const resolvedDeps = dependencies.map(this.get.bind(this))
             fn(...resolvedDeps)

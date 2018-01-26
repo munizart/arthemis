@@ -9,6 +9,8 @@
         * [.singleton(name, definition, ...deps)](#Container+singleton)
         * [.factory(name, definition, ...deps)](#Container+factory)
         * [.literal(name, definition)](#Container+literal)
+        * [.get(name)](#Container+get) ⇒ <code>Object</code>
+        * [.resolve(fn, ...dependencies)](#Container+resolve)
     * _inner_
         * [~depDescriptor(name, Definition, deps, type)](#Container..depDescriptor) ⇒ [<code>Descriptor</code>](#Container..Descriptor)
         * [~Descriptor](#Container..Descriptor) : <code>Object</code>
@@ -63,6 +65,29 @@ Register a literal value into container
 | --- | --- | --- |
 | name | <code>String</code> | Name for the dependency |
 | definition | <code>\*</code> | The item value |
+
+<a name="Container+get"></a>
+
+### container.get(name) ⇒ <code>Object</code>
+Get a resolved dependency
+
+**Kind**: instance method of [<code>Container</code>](#Container)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| name | <code>String</code> | dependency name |
+
+<a name="Container+resolve"></a>
+
+### container.resolve(fn, ...dependencies)
+Call the given function within the requested dependencies resolved
+
+**Kind**: instance method of [<code>Container</code>](#Container)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| fn | <code>function</code> | Function to call within deps |
+| ...dependencies | <code>Array.&lt;String&gt;</code> | List of dependencies to resolve |
 
 <a name="Container..depDescriptor"></a>
 
