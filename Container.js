@@ -8,9 +8,9 @@ const T_FACTORY = Symbol('factory')
  *
  * @memberof Container~
  *
- * @param  { String } name          dependency's name
- * @param  { * } Definition         dependency's contructor or factory or literal
- * @param  { String[] } deps        dependencies to resolve into constructor or factory call
+ * @param  { String } name          Dependency's name
+ * @param  { * } Definition         Dependency's contructor or factory or literal
+ * @param  { String[] } deps        Dependencies to resolve into constructor or factory call
  * @param  { Symbol } type          Symbol for the type
  * @return { Container~Descriptor } A descriptor representing a dependency
  */
@@ -42,7 +42,7 @@ function containerFactory () {
          * @memberof Container#
          * @param  { String }    name         Name for the dependency
          * @param  { Function }  definition   Class constructor
-         * @param  { ...String } deps         dependencies to resolve into constructor call
+         * @param  { ...String } deps         Dependencies to resolve into constructor call
          */
     class (name, definition, ...deps) {
       storage.set(name, depDescriptor(name, definition, deps, T_CLASS))
@@ -53,7 +53,7 @@ function containerFactory () {
          * @memberof Container#
          * @param  { String }    name         Name for the dependency
          * @param  { Function }  definition   Class constructor
-         * @param  { ...String } deps         dependencies to resolve into constructor call
+         * @param  { ...String } deps         Dependencies to resolve into constructor call
          */
     singleton (name, definition, ...deps) {
       storage.set(name, depDescriptor(name, definition, deps, T_SINGLETON))
@@ -64,7 +64,7 @@ function containerFactory () {
          * @memberof Container#
          * @param  { String}     name         Name for the dependency
          * @param  { Function }  definition   Factory function
-         * @param  { ...String } deps         dependencies to resolve into factory call
+         * @param  { ...String } deps         Dependencies to resolve into factory call
          */
     factory (name, definition, ...deps) {
       storage.set(name, depDescriptor(name, definition, deps, T_FACTORY))
@@ -84,7 +84,7 @@ function containerFactory () {
          * Get a resolved dependency
          *
          * @memberof Container#
-         * @param  { String } name dependency name
+         * @param  { String } name Dependency name
          * @return { Object }
          */
     get (name) {
