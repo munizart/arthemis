@@ -7,9 +7,6 @@ module.exports = (grunt) => {
         src: ['*.js'],
         dest: 'docs/README.md'
       }
-    },
-    eslint: {
-      target: ['*.js']
     }
   })
 
