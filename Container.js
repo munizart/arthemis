@@ -8,11 +8,11 @@ const T_FACTORY = Symbol('factory')
  *
  * @memberof Container~
  *
- * @param  {String} name          dependency's name
- * @param  {*} Definition         dependency's contructor or factory or literal
- * @param  {String[]} deps        dependencies to resolve into constructor or factory call
- * @param  {Symbol} type          Symbol for the type
- * @return {Container~Descriptor} A descriptor representing a dependency
+ * @param  { String } name          dependency's name
+ * @param  { * } Definition         dependency's contructor or factory or literal
+ * @param  { String[] } deps        dependencies to resolve into constructor or factory call
+ * @param  { Symbol } type          Symbol for the type
+ * @return { Container~Descriptor } A descriptor representing a dependency
  */
 function depDescriptor (name, Definition, deps, type) {
   return {
@@ -40,9 +40,9 @@ function containerFactory () {
     /**
          * Register a class that could have more than one instance
          * @memberof Container#
-         * @param  {String}    name         Name for the dependency
-         * @param  {Function}  definition   Class constructor
-         * @param  {...String} deps         dependencies to resolve into constructor call
+         * @param  { String }    name         Name for the dependency
+         * @param  { Function }  definition   Class constructor
+         * @param  { ...String } deps         dependencies to resolve into constructor call
          */
     class (name, definition, ...deps) {
       storage.set(name, depDescriptor(name, definition, deps, T_CLASS))
@@ -51,9 +51,9 @@ function containerFactory () {
          * Register a class that should have at most one instance
          *
          * @memberof Container#
-         * @param  {String}    name         Name for the dependency
-         * @param  {Function}  definition   Class constructor
-         * @param  {...String} deps         dependencies to resolve into constructor call
+         * @param  { String }    name         Name for the dependency
+         * @param  { Function }  definition   Class constructor
+         * @param  { ...String } deps         dependencies to resolve into constructor call
          */
     singleton (name, definition, ...deps) {
       storage.set(name, depDescriptor(name, definition, deps, T_SINGLETON))
@@ -62,9 +62,9 @@ function containerFactory () {
          * Register a factory
          *
          * @memberof Container#
-         * @param  {String}    name         Name for the dependency
-         * @param  {Function}  definition   Factory function
-         * @param  {...String} deps         dependencies to resolve into factory call
+         * @param  { String}     name         Name for the dependency
+         * @param  { Function }  definition   Factory function
+         * @param  { ...String } deps         dependencies to resolve into factory call
          */
     factory (name, definition, ...deps) {
       storage.set(name, depDescriptor(name, definition, deps, T_FACTORY))
@@ -73,8 +73,8 @@ function containerFactory () {
          * Register a literal value into container
          *
          * @memberof Container#
-         * @param  {String}    name        Name for the dependency
-         * @param  {*}         definition  The item value
+         * @param  { String }    name        Name for the dependency
+         * @param  { * }         definition  The item value
          */
     literal (name, definition) {
       storage.set(name, depDescriptor(name, definition, [], T_LITERAL))
@@ -84,8 +84,8 @@ function containerFactory () {
          * Get a resolved dependency
          *
          * @memberof Container#
-         * @param  {String} name dependency name
-         * @return {Object}
+         * @param  { String } name dependency name
+         * @return { Object }
          */
     get (name) {
       const descriptor = storage.get(name)
@@ -110,8 +110,8 @@ function containerFactory () {
          * Call the given function within the requested dependencies resolved
          *
          * @memberof Container#
-         * @param  {Function}    fn           Function to call within deps
-         * @param  {...String[]} dependencies List of dependencies to resolve
+         * @param  { Function }    fn           Function to call within deps
+         * @param  { ...String[] } dependencies List of dependencies to resolve
          */
     resolve (fn, ...dependencies) {
       const resolvedDeps = dependencies.map(this.get.bind(this))
