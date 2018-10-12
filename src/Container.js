@@ -120,4 +120,4 @@ function containerFactory () {
   }
 }
 
-module.exports = containerFactory
+export default containerFactory
