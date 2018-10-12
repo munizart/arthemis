@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --ext .js ./"
+    "build": "npm run generateDoc && npm run lint",
+    "lint": "eslint --ext .js ./",
+    "generateDoc": "npx jsdoc2md *.js > ./docs/README.md"
   },
   "keywords": [],
   "author": "munizart",
@@ -17,10 +19,7 @@
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "grunt": "^1.0.3",
-    "grunt-eslint": "^20.1.0",
-    "grunt-jsdoc-to-markdown": "^4.0.0",
-    "load-grunt-tasks": "^3.5.2",
+    "jsdoc-to-markdown": "^4.0.1",
     "minami": "^1.2.3"
   }
 }
