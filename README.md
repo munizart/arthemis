@@ -1,5 +1,6 @@
 # Arthemis: IoC made simple.
-Simple API decoupled dependency injection in which you can do IoC via containers, for more information, read the 
+Simple API decoupled dependency injection in which you can do IoC via containers, for more information, read the [docs](https://github.com/munizart/arthemis/tree/master/docs).
+
 
 ## Getting Started
 These instructions will get you through installing and using Arthemis on your project.
@@ -12,7 +13,6 @@ npm install --save arthemis
 yarn add arthemis
 ```
 ## [docs](https://github.com/munizart/arthemis/tree/master/docs)
-
 
 ### Using
 Arthemis works as a dependency repository with automatic dependency injection, this will guide you through defining and getting stuff from the repository.
