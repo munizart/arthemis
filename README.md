@@ -1,5 +1,5 @@
 # Arthemis: IoC made simple.
-Simple API decoupled dependency injection in which you can do IoC via containers, for more information, read the 
+Simple API decoupled dependency injection in which you can do IoC via containers, for more information, read the [docs](https://github.com/munizart/arthemis/tree/master/docs).
 
 ## Getting Started
 These instructions will get you through installing and using Arthemis on your project.
@@ -11,8 +11,8 @@ npm install --save arthemis
 ## OR ##
 yarn add arthemis
 ```
-## [docs](https://github.com/munizart/arthemis/tree/master/docs)
 
+## [docs](https://github.com/munizart/arthemis/tree/master/docs)
 
 ### Using
 Arthemis works as a dependency repository with automatic dependency injection, this will guide you through defining and getting stuff from the repository.
@@ -20,15 +20,15 @@ First, we need to import Arthemis and create a new repository.
 
 ```javascript
   const arthemis = require('arthemis')
-  const myRepo = arthemis();
+  const myRepo = arthemis()
 ```
 
 Note that Arthemis exports you a function, that function gives you a new repository on every call.
 
 ```javascript
   const arthemis = require('arthemis')
-  const aRepo = arthemis();
-  const anotherRepo = arthemis();
+  const aRepo = arthemis()
+  const anotherRepo = arthemis()
 ```
 
 Every repository can hold it's own definers, which can vary in type:
@@ -41,7 +41,7 @@ Every repository can hold it's own definers, which can vary in type:
 
 ```javascript
   const arthemis = require('arthemis')
-  const myRepo = arthemis();
+  const myRepo = arthemis()
 
   const me = {
     firstName: 'Artur',
@@ -58,10 +58,10 @@ Every repository can hold it's own definers, which can vary in type:
 #### Defining Classes
 ```javascript
   const arthemis = require('arthemis')
-  const myRepo = arthemis();
+  const myRepo = arthemis()
 
   class Me {
-    constructor() {
+    constructor () {
       this.firstName = 'Artur'
       this.lastName = 'Muniz'
     }
@@ -78,10 +78,10 @@ But the true power of Arthemis is inject dependencies for you.
 ##### Defining Classes with dependencies
 ```javascript
   const arthemis = require('arthemis')
-  const myRepo = arthemis();
+  const myRepo = arthemis()
 
   class Logger {
-    log(level, ...args) {
+    log (level, ...args) {
       if (level in console) {
         return console[level](...args)
       }
@@ -92,7 +92,7 @@ But the true power of Arthemis is inject dependencies for you.
     constructor (logger) {
       this.logger = logger
     }
-    doStuff() {
+    doStuff () {
       // Use this.logger here
       this.logger.log('info', 'Awesome! logger was injected <3')
     }
@@ -114,18 +114,18 @@ But the true power of Arthemis is inject dependencies for you.
 
   // A simple in-memory database...
   myRepo.singleton('DataBase', class DataBase {
-    constructor() {
+    constructor () {
       this.connect()
     }
-    connect() {
+    connect () {
       this.collections = {}
       return true
     }
-    save(collectionName, value) {
+    save (collectionName, value) {
       const collection = this.collections[collectionName] || []
       this.collections[collectionName] = collection.concat([value])
     }
-    get(collectionName, filter) {
+    get (collectionName, filter) {
       const collection = this.collections[collectionName] || []
       if (filter) {
         return collection.filter(filter)
