@@ -69,8 +69,8 @@ Every repository can hold it's own definers, which can vary in type:
 
   myRepo.class('Artur', Me)
 
-  const me = myRepo.get('me')
-  const anotherMe = myRepo.get('me')
+  const me = myRepo.get('Artur')
+  const anotherMe = myRepo.get('Artur')
 
   console.log(anotherMe === me) // false
 ```
@@ -140,20 +140,20 @@ But the true power of Arthemis is inject dependencies for you.
 
 ## Roadmap
 
-We organize this project roadmap using (github issues)[https://github.com/munizart/arthemis/labels/roadmap].
+We organize this project roadmap using [github issues](https://github.com/munizart/arthemis/labels/roadmap).
 
 ## Questions?
-If you have any questions about using Arthemis on your project, please open a (new issue)[https://github.com/munizart/arthemis/issues/new].
+If you have any questions about using Arthemis on your project, please open a [new issue](https://github.com/munizart/arthemis/issues/new).
 
 ## Filing a bug
 
-If you found a bug, please open a (new issue)[https://github.com/munizart/arthemis/issues/new].
+If you found a bug, please open a [new issue](https://github.com/munizart/arthemis/issues/new).
 
 ## Contributing
 
 This project is open for contributions.
-To suggest a new feature, please open a (new issue)[https://github.com/munizart/arthemis/issues/new].
-To fix a filed bug or implementing a feature on (roadmap)[https://github.com/munizart/arthemis/labels/roadmap], please fork this project, create a new branch coitaining your code and send a pull request. If you need any guidence, you can reach us out by creating a new issue.
+To suggest a new feature, please open a [new issue](https://github.com/munizart/arthemis/issues/new).
+To fix a filed bug or implementing a feature on [roadmap](https://github.com/munizart/arthemis/labels/roadmap), please fork this project, create a new branch coitaining your code and send a pull request. If you need any guidence, you can reach us out by creating a new issue.
 
 ## Versioning
 
