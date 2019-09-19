@@ -1,6 +1,6 @@
 {
   "name": "arthemis",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple API decoupled IoC container by munizart",
   "main": "index.js",
   "scripts": {

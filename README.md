@@ -161,7 +161,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Artur Muniz** - [MunizArt](https://github.com/Munizart)
+* **Artur Muniz** - [MunizArt](https://muniz.art.br/about)
 
 See also the list of [contributors](https://github.com/munizart/arthemis/contributors) who participated in this project.
 
