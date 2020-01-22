@@ -4,10 +4,11 @@
   "description": "A simple API decoupled IoC container by munizart",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run generateDoc && npm run lint",
-    "lint": "eslint --ext .js ./",
-    "generateDoc": "npx jsdoc2md *.js > ./docs/README.md"
+    "test": "npx jest",
+    "build": "npm run generateDoc && npm run lint && npm run dist",
+    "dist": "npx babel --plugins transform-es2015-modules-umd ./src/Container.js > ./index.js",
+    "lint": "eslint --ext src/*.js ./",
+    "generateDoc": "npx jsdoc2md src/*.js > ./docs/README.md"
   },
   "keywords": [],
   "author": "munizart",
@@ -24,6 +25,11 @@
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
+    "jsdoc-to-markdown": "^4.0.1"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1"
     "jsdoc-to-markdown": "^4.0.1",
     "minami": "^1.2.3"
   }
